@@ -1,48 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>LVRWORKNET Order Page</title>
+
+<title>LVRWORKNET Order System</title>
 
 <style>
+
 body{
 font-family: Arial;
-background:#f4f4f4;
+background: linear-gradient(120deg,#0f2027,#203a43,#2c5364);
+color:white;
 }
 
 .container{
-width:500px;
+width:600px;
 margin:auto;
 background:white;
-padding:20px;
-margin-top:50px;
-border-radius:10px;
+color:black;
+padding:25px;
+margin-top:40px;
+border-radius:12px;
+box-shadow:0px 0px 15px rgba(0,0,0,0.4);
 }
 
-h1{
+.logo{
 text-align:center;
-color:#333;
+font-size:28px;
+font-weight:bold;
+color:#2c5364;
+margin-bottom:10px;
 }
 
-input,textarea{
+.contact{
+text-align:center;
+margin-bottom:20px;
+}
+
+input, textarea{
 width:100%;
 padding:10px;
-margin:8px 0;
+margin-top:8px;
+margin-bottom:15px;
 border:1px solid #ccc;
-border-radius:5px;
+border-radius:6px;
 }
 
 button{
-background:#007BFF;
-color:white;
-padding:10px;
-border:none;
 width:100%;
-border-radius:5px;
+padding:12px;
+background:#2c5364;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
 }
 
 button:hover{
-background:#0056b3;
+background:#1c3545;
 }
+
+.logbox{
+background:#f1f1f1;
+padding:10px;
+height:120px;
+overflow:auto;
+border-radius:6px;
+}
+
 </style>
 
 </head>
@@ -51,35 +75,65 @@ background:#0056b3;
 
 <div class="container">
 
-<h1>LVRWORKNET</h1>
+<div class="logo">LVRWORKNET</div>
 
-<p><b>Contact Number:</b> 010102030</p>
+<div class="contact">
+Contact Number: 010102030
+</div>
 
-<form>
+<form id="orderForm">
+
+<label>Reference Number</label>
+<input type="text" id="ref" placeholder="REF-0001">
 
 <label>Customer Name</label>
-<input type="text" placeholder="Enter customer name">
+<input type="text" id="name">
 
 <label>Contact Number</label>
-<input type="text" placeholder="Enter contact number">
+<input type="text" id="phone">
 
 <label>Email</label>
-<input type="email" placeholder="Enter email">
+<input type="email" id="email">
 
 <label>Order Number</label>
-<input type="text" placeholder="Enter order number">
+<input type="text" id="order">
 
 <label>Order Status</label>
-<input type="text" placeholder="Processing / Completed">
+<input type="text" id="status" placeholder="Processing / Completed">
 
 <label>Requirements</label>
-<textarea placeholder="Enter requirements"></textarea>
+<textarea id="req"></textarea>
 
-<button type="submit">Submit Order</button>
+<button type="button" onclick="addLog()">Submit Order</button>
 
 </form>
 
+<h3>Activity Log</h3>
+
+<div class="logbox" id="log"></div>
+
 </div>
+
+<script>
+
+function addLog(){
+
+let ref=document.getElementById("ref").value;
+let name=document.getElementById("name").value;
+let order=document.getElementById("order").value;
+
+let log=document.getElementById("log");
+
+let time=new Date().toLocaleTimeString();
+
+log.innerHTML +=
+time+" | Ref:"+ref+
+" | Customer:"+name+
+" | Order:"+order+"<br>";
+
+}
+
+</script>
 
 </body>
 </html>
